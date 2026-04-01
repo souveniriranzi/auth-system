@@ -1,0 +1,176 @@
+/* ===========================
+   General Reset & Body
+=========================== */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f4f6f9;
+  color: #1e293b;
+}
+
+/* ===========================
+   Navbar
+=========================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #1e293b;
+  color: white;
+}
+
+.logo {
+  margin: 0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #38bdf8;
+}
+
+/* ===========================
+   Homepage
+=========================== */
+.home {
+  text-align: center;
+  margin-top: 120px;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.primary:hover {
+  background: #1d4ed8;
+}
+
+.secondary {
+  background: #10b981;
+  color: white;
+}
+
+.secondary:hover {
+  background: #059669;
+}
+
+/* ===========================
+   Form Container (Login & Register)
+=========================== */
+.form-container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 25px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #2563eb;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+}
+
+p a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  color: #1d4ed8;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+@media screen and (max-width: 400px) {
+  .form-container {
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 80%;
+    margin: 8px auto;
+  }
+}
