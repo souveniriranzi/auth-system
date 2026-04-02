@@ -80,8 +80,6 @@ function App() {
   );
 }
 
-export default App;
-
 // Inline CSS
 const styles = {
   container: {
