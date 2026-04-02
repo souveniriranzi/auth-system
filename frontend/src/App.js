@@ -1,19 +1,69 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Register from "./pages/register";
-import Login from "./pages/login";
-import "./App.css";
+import api from "./api";
 
 function Home() {
-  return (
-    <div style={styles.home}>
-      <h1 style={styles.title}>Authentication System</h1>
-      <p style={styles.subtitle}>
-        Securely register and login 
-      </p>
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
 
-      <div style={styles.buttons}>
-        <Link to="/register" style={styles.btnPrimary}>Register</Link>
-        <Link to="/login" style={styles.btnSecondary}>Login</Link>
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(""); // reset previous error
+
+    try {
+      const res = await api.post("/login", form); // call your backend
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token); // store token
+        navigate("/dashboard"); // redirect after login
+      } else {
+        setError(res.data.message || "Invalid credentials");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "Server error");
+    }
+  };
+
+  return (
+    <div style={styles.container}>
+      {/* Left: Welcome */}
+      <div style={styles.left}>
+        <h1 style={styles.welcomeTitle}>Welcome to My App</h1>
+        <p style={styles.welcomeText}>
+          Securely register and login to access your account.
+        </p>
+      </div>
+
+      {/* Right: Login Form */}
+      <div style={styles.right}>
+        <form onSubmit={handleSubmit} style={styles.form}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={form.email}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={form.password}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+          {error && <p style={styles.error}>{error}</p>}
+          <button type="submit" style={styles.btnPrimary}>Login</button>
+          <p style={styles.registerText}>
+            No account? <Link to="/register" style={styles.registerLink}>Register here</Link>
+          </p>
+        </form>
       </div>
     </div>
   );
@@ -22,99 +72,80 @@ function Home() {
 function App() {
   return (
     <Router>
-      <div style={styles.container}>
-        
-        {/* Navbar */}
-        <nav style={styles.nav}>
-          <h2 style={styles.logo}>App</h2>
-          <div>
-            <Link to="/" style={styles.link}>Home</Link>
-            <Link to="/register" style={styles.link}>Register</Link>
-            <Link to="/login" style={styles.link}>Login</Link>
-          </div>
-        </nav>
-
-        {/* Routes */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Router>
   );
 }
 
 export default App;
 
-//////////////////////////////////////////////////
-// 🎨 STYLES (INLINE CSS)
-//////////////////////////////////////////////////
-
+// Inline CSS
 const styles = {
   container: {
-    fontFamily: "Arial, sans-serif",
-    background: "#f4f6f9",
-    minHeight: "100vh"
-  },
-
-  nav: {
     display: "flex",
-    justifyContent: "space-between",
+    minHeight: "100vh",
+    background: "#f0f2f5",
     alignItems: "center",
-    padding: "15px 40px",
-    background: "#1e293b",
-    color: "white"
+    justifyContent: "center",
+    padding: "0 50px",
   },
-
-  logo: {
-    margin: 0
+  left: {
+    flex: 1,
+    paddingRight: "50px",
   },
-
-  link: {
-    color: "white",
-    marginLeft: "20px",
-    textDecoration: "none",
-    fontWeight: "bold"
+  welcomeTitle: {
+    fontSize: "48px",
+    margin: 0,
+    color: "#111",
   },
-
-  home: {
-    textAlign: "center",
-    marginTop: "100px"
-  },
-
-  title: {
-    fontSize: "40px",
-    color: "#1e293b"
-  },
-
-  subtitle: {
+  welcomeText: {
     fontSize: "18px",
     color: "#555",
-    margin: "20px 0"
+    marginTop: "20px",
   },
-
-  buttons: {
-    marginTop: "30px"
+  right: {
+    width: "350px",
+    background: "white",
+    padding: "40px",
+    borderRadius: "12px",
+    boxShadow: "0 4px 20px rgba(0,0,0,0.15)",
   },
-
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  input: {
+    padding: "12px",
+    margin: "10px 0",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+    fontSize: "14px",
+  },
   btnPrimary: {
-    padding: "12px 25px",
-    marginRight: "15px",
+    padding: "12px",
     background: "#2563eb",
     color: "white",
+    border: "none",
     borderRadius: "8px",
-    textDecoration: "none",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    cursor: "pointer",
+    marginTop: "10px",
   },
-
-  btnSecondary: {
-    padding: "12px 25px",
-    background: "#10b981",
-    color: "white",
-    borderRadius: "8px",
+  error: {
+    color: "red",
+    fontSize: "13px",
+  },
+  registerText: {
+    marginTop: "15px",
+    fontSize: "14px",
+    color: "#555",
+  },
+  registerLink: {
+    color: "#10b981",
     textDecoration: "none",
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 };
