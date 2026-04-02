@@ -71,7 +71,7 @@ function Home() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/auth-system">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
