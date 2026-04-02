@@ -1,73 +1,6 @@
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Register from "./pages/register";
-import api from "./api";
-
-function Home() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(""); // reset previous error
-
-    try {
-      const res = await api.post("/login", form); // call your backend
-      if (res.data.success) {
-        localStorage.setItem("token", res.data.token); // store token
-        navigate("/dashboard"); // redirect after login
-      } else {
-        setError(res.data.message || "Invalid credentials");
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || "Server error");
-    }
-  };
-
-  return (
-    <div style={styles.container}>
-      {/* Left: Welcome */}
-      <div style={styles.left}>
-        <h1 style={styles.welcomeTitle}>Welcome to My App</h1>
-        <p style={styles.welcomeText}>
-          Securely register and login to access your account.
-        </p>
-      </div>
-
-      {/* Right: Login Form */}
-      <div style={styles.right}>
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-          {error && <p style={styles.error}>{error}</p>}
-          <button type="submit" style={styles.btnPrimary}>Login</button>
-          <p style={styles.registerText}>
-            No account? <Link to="/register" style={styles.registerLink}>Register here</Link>
-          </p>
-        </form>
-      </div>
-    </div>
-  );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -79,6 +12,7 @@ function App() {
     </Router>
   );
 }
+
 
 // Inline CSS
 const styles = {
@@ -147,3 +81,6 @@ const styles = {
     fontWeight: "bold",
   },
 };
+
+export default App;
+
