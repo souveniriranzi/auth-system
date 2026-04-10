@@ -16,8 +16,7 @@ export default function Login() {
       return;
     }
 
-    const res = await API.post("/auth/login", form);
-
+   const res = await api.post("/api/auth/login", form);
     if (res.data.success) {
       setMsg("Welcome " + res.data.user.username);
     } else {

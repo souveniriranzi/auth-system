@@ -1,5 +1,8 @@
 import axios from "axios";
 
-export default axios.create({
-  baseURL: "https://auth-system-lytp.onrender.com/api/auth"
+// Use the hosted backend
+const api = axios.create({
+  baseURL: "https://auth-system-lytp.onrender.com", // your deployed backend
 });
+
+export default api;

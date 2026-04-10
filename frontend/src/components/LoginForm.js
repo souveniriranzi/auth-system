@@ -15,7 +15,7 @@ export default function LoginForm() {
     setError("");
 
     try {
-      const res = await api.post("/login", form);
+      const res = await api.post("/api/auth/login", form);
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
         navigate("/dashboard");

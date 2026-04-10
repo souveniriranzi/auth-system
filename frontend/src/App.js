@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Register from "./pages/Register";
-
+import Home from "./pages/home";
+import Register from "./pages/register";
+import Dashboard from "./pages/dashboard";
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+       <Route path="*" element={<div>Page Not Found</div>} />
     </Routes>
   );
 }

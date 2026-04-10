@@ -16,10 +16,10 @@ export default function Register() {
     setError("");
 
     try {
-      const res = await api.post("/register", form); // call backend register API
+   const res = await api.post("/api/auth/register", form);  // call backend register API
       if (res.data.success) {
         setMessage("Registered successfully!");
-        setTimeout(() => navigate("/login"), 1500); // redirect to login after 1.5s
+        setTimeout(() => navigate("/"), 1500); // redirect to login after 1.5s
       } else {
         setError(res.data.message || "Registration failed");
       }
