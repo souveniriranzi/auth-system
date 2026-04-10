@@ -1,10 +1,13 @@
 import { useState } from "react";
-import API from "../api";
-import "../App.css"; // import the shared CSS
+import { useNavigate, Link } from "react-router-dom";
+import api from "../api";
+import "../App.css";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [msg, setMsg] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,17 +19,24 @@ export default function Login() {
       return;
     }
 
-   const res = await api.post("/api/auth/login", form);
-    if (res.data.success) {
-      setMsg("Welcome " + res.data.user.username);
-    } else {
-      setMsg(res.data.message);
+    try {
+      const res = await api.post("/api/auth/login", form);
+
+      if (res.data.success) {
+        setMsg("Welcome " + res.data.user.username);
+        navigate("/dashboard");
+      } else {
+        setMsg(res.data.message);
+      }
+    } catch (err) {
+      setMsg("Server error");
     }
   };
 
   return (
     <div className="form-container">
       <h2>Login</h2>
+
       <input name="email" placeholder="Email" onChange={handleChange} />
       <input
         name="password"
@@ -34,8 +44,18 @@ export default function Login() {
         placeholder="Password"
         onChange={handleChange}
       />
+
       <button onClick={handleSubmit}>Login</button>
+
       {msg && <p>{msg}</p>}
+
+      {/* 👇 NEW LINK */}
+      <p style={{ marginTop: "10px" }}>
+        Not registered?{" "}
+        <Link to="/register" style={{ color: "blue" }}>
+          Create account
+        </Link>
+      </p>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Register() {
    const res = await api.post("/api/auth/register", form);  // call backend register API
       if (res.data.success) {
         setMessage("Registered successfully!");
-        setTimeout(() => navigate("/"), 1500); // redirect to login after 1.5s
+        setTimeout(() => navigate("/login"), 100); // redirect to login after 1.5s
       } else {
         setError(res.data.message || "Registration failed");
       }
