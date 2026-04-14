@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/auth-system/static/js/main.9d5410bc.js",
+    "main.js": "/auth-system/static/js/main.bd9321bc.js",
     "index.html": "/auth-system/index.html",
-    "main.9d5410bc.js.map": "/auth-system/static/js/main.9d5410bc.js.map"
+    "main.bd9321bc.js.map": "/auth-system/static/js/main.bd9321bc.js.map"
   },
   "entrypoints": [
-    "static/js/main.9d5410bc.js"
+    "static/js/main.bd9321bc.js"
   ]
 }
