@@ -20,6 +20,7 @@ export default function Login() {
     }
 
     try {
+      console.log("Sending login data:", form);
       const res = await api.post("/api/auth/login", form);
 
       if (res.data.success) {
@@ -29,7 +30,8 @@ export default function Login() {
         setMsg(res.data.message);
       }
     } catch (err) {
-      setMsg("Server error");
+      console.error("Login error:", err.response?.data || err.message);
+      setMsg(err.response?.data?.message || "Server error");
     }
   };
 
