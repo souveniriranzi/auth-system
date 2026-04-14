@@ -32,14 +32,7 @@ export default function Dashboard() {
             <span style={styles.navIcon}>📊</span>
             Dashboard
           </a>
-          <a href="#" style={styles.navLink}>
-            <span style={styles.navIcon}>👤</span>
-            Profile
-          </a>
-          <a href="#" style={styles.navLink}>
-            <span style={styles.navIcon}>⚙️</span>
-            Settings
-          </a>
+      
         </nav>
 
         <button onClick={handleLogout} style={styles.logoutButton}>
