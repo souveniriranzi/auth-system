@@ -57,7 +57,9 @@ export default function Home() {
 const styles = {
   container: {
     display: "flex",
-    minHeight: "100vh",
+    height: "100vh",
+    width: "100vw",
+    overflow: "hidden",
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
   },
   leftSide: {
@@ -68,7 +70,7 @@ const styles = {
     justifyContent: "center",
     position: "relative",
     overflow: "hidden",
-    padding: "40px",
+    padding: "20px",
   },
   circleOverlay: {
     position: "absolute",
@@ -87,9 +89,9 @@ const styles = {
   },
   welcomeTitle: {
     color: "#ffffff",
-    fontSize: "48px",
+    fontSize: "42px",
     fontWeight: "700",
-    marginBottom: "20px",
+    marginBottom: "16px",
     lineHeight: 1.2,
   },
   welcomeText: {
@@ -103,14 +105,15 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "40px",
+    padding: "20px",
     backgroundColor: "#f8fafc",
+    overflow: "auto",
   },
   logoContainer: {
     display: "flex",
     alignItems: "center",
     gap: "12px",
-    marginBottom: "40px",
+    marginBottom: "24px",
   },
   logoIcon: {
     fontSize: "32px",
@@ -124,10 +127,10 @@ const styles = {
   card: {
     backgroundColor: "#ffffff",
     borderRadius: "16px",
-    padding: "40px",
+    padding: "32px",
     boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     width: "100%",
-    maxWidth: "400px",
+    maxWidth: "380px",
     textAlign: "center",
   },
   cardTitle: {
@@ -170,8 +173,8 @@ const styles = {
     fontSize: "18px",
   },
   footerText: {
-    marginTop: "32px",
-    fontSize: "14px",
+    marginTop: "20px",
+    fontSize: "13px",
     color: "#9ca3af",
     textAlign: "center",
   },

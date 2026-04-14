@@ -138,7 +138,9 @@ export default function Login() {
 const styles = {
   container: {
     display: "flex",
-    minHeight: "100vh",
+    height: "100vh",
+    width: "100vw",
+    overflow: "hidden",
     fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
   },
   leftSide: {
@@ -149,7 +151,7 @@ const styles = {
     justifyContent: "center",
     position: "relative",
     overflow: "hidden",
-    padding: "40px",
+    padding: "20px",
   },
   circleOverlay: {
     position: "absolute",
@@ -183,23 +185,24 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: "40px",
+    padding: "20px",
     backgroundColor: "#f8fafc",
+    overflow: "auto",
   },
   formCard: {
     backgroundColor: "#ffffff",
     borderRadius: "16px",
-    padding: "48px",
+    padding: "32px",
     boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
     width: "100%",
-    maxWidth: "420px",
+    maxWidth: "380px",
   },
   logoContainer: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     gap: "12px",
-    marginBottom: "32px",
+    marginBottom: "20px",
   },
   logoIcon: {
     fontSize: "32px",
@@ -211,16 +214,16 @@ const styles = {
     margin: 0,
   },
   formTitle: {
-    fontSize: "24px",
+    fontSize: "22px",
     fontWeight: "600",
     color: "#1f2937",
-    marginBottom: "8px",
+    marginBottom: "6px",
     textAlign: "center",
   },
   formSubtitle: {
-    fontSize: "14px",
+    fontSize: "13px",
     color: "#6b7280",
-    marginBottom: "24px",
+    marginBottom: "16px",
     textAlign: "center",
   },
   errorMessage: {
@@ -239,7 +242,7 @@ const styles = {
   },
   inputGroup: {
     position: "relative",
-    marginBottom: "16px",
+    marginBottom: "12px",
   },
   inputIcon: {
     position: "absolute",
@@ -297,7 +300,7 @@ const styles = {
   divider: {
     display: "flex",
     alignItems: "center",
-    margin: "24px 0",
+    margin: "16px 0",
     gap: "16px",
   },
   dividerLine: {
@@ -324,7 +327,7 @@ const styles = {
   },
   registerText: {
     textAlign: "center",
-    marginTop: "24px",
+    marginTop: "16px",
     fontSize: "14px",
     color: "#6b7280",
   },
