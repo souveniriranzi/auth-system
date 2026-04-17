@@ -27,13 +27,15 @@ export default function Dashboard() {
           <h2 style={styles.logoText}>Auth System</h2>
         </div>
 
-        <nav style={styles.nav}>
-          <a href="#" style={{...styles.navLink, ...styles.navLinkActive}}>
-            <span style={styles.navIcon}>📊</span>
-            Dashboard
-          </a>
-      
-        </nav>
+         <nav style={styles.nav}>
+      <div
+        onClick={() => navigate("/dashboard")}
+        style={{ ...styles.navLink, ...styles.navLinkActive, cursor: "pointer" }}
+      >
+        <span style={styles.navIcon}>📊</span>
+        Dashboard
+      </div>
+    </nav>
 
         <button onClick={handleLogout} style={styles.logoutButton}>
           <span style={styles.navIcon}>🚪</span>
